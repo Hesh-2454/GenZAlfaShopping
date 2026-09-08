@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendHub - Gen Z & Gen Alpha Shopping</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🔥</span>
+                <h1>TrendHub</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" onclick="showSection('home')">Home</a></li>
+                <li><a href="#shop" onclick="showSection('shop')">Shop</a></li>
+                <li><a href="#trending" onclick="showSection('trending')">Trending</a></li>
+                <li><a href="#cart" onclick="showSection('cart')">🛒 Cart <span id="cartCount" class="cart-badge">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Welcome to TrendHub</h2>
+                <p>The #1 marketplace for Gen Z & Gen Alpha vibes</p>
+                <button class="btn btn-primary" onclick="showSection('shop')">Start Shopping 🛍️</button>
+            </div>
+            <div class="hero-emoji">✨🎮💻📱🎧</div>
+        </div>
+
+        <div class="categories-preview">
+            <h3>Browse by Category</h3>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterByCategory('electronics'); showSection('shop')">
+                    <span class="category-icon">📱</span>
+                    <h4>Electronics</h4>
+                </div>
+                <div class="category-card" onclick="filterByCategory('fashion'); showSection('shop')">
+                    <span class="category-icon">👕</span>
+                    <h4>Fashion</h4>
+                </div>
+                <div class="category-card" onclick="filterByCategory('gaming'); showSection('shop')">
+                    <span class="category-icon">🎮</span>
+                    <h4>Gaming</h4>
+                </div>
+                <div class="category-card" onclick="filterByCategory('accessories'); showSection('shop')">
+                    <span class="category-icon">🎧</span>
+                    <h4>Accessories</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="section">
+        <div class="shop-container">
+            <h2>Shop All Products</h2>
+            
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Search products..." class="search-box">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="accessories">Accessories</option>
+                </select>
+                <select id="priceFilter" class="filter-select">
+                    <option value="">All Prices</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100-500">$100 - $500</option>
+                    <option value="500+">$500+</option>
+                </select>
+            </div>
+
+            <div id="productsGrid" class="products-grid"></div>
+        </div>
+    </section>
+
+    <!-- Trending Section -->
+    <section id="trending" class="section">
+        <div class="trending-container">
+            <h2>🔥 Trending Right Now</h2>
+            <p class="trending-subtitle">What everyone's buying this week</p>
+            <div id="trendingGrid" class="trending-grid"></div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="section">
+        <div class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <div id="cartEmpty" class="cart-empty">
+                <p>🛒 Your cart is empty</p>
+                <button class="btn btn-primary" onclick="showSection('shop')">Continue Shopping</button>
+            </div>
+            <div id="cartItems" class="cart-items" style="display: none;">
+                <div id="cartList" class="cart-list"></div>
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">$5.00</span>
+                    </div>
+                    <div class="summary-row tax">
+                        <span>Tax (10%):</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="checkout()">Checkout 💳</button>
+                    <button class="btn btn-secondary btn-full" onclick="clearCart()">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="product" class="modal-image">
+                <div class="modal-details">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalCategory" class="product-category"></p>
+                    <div class="rating">
+                        <span id="modalRating"></span>
+                        <span id="modalReviews"></span>
+                    </div>
+                    <p id="modalDescription" class="product-description"></p>
+                    <div class="price-section">
+                        <span id="modalPrice" class="price"></span>
+                        <span id="modalDiscount" class="discount"></span>
+                    </div>
+                    <div class="quantity-selector">
+                        <button onclick="decreaseQuantity()">-</button>
+                        <input type="number" id="quantity" value="1" min="1">
+                        <button onclick="increaseQuantity()">+</button>
+                    </div>
+                    <button class="btn btn-primary btn-full" onclick="addToCart()">Add to Cart 🛒</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
