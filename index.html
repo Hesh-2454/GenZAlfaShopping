@@ -37,9 +37,17 @@
         <div class="categories-preview">
             <h3>Browse by Category</h3>
             <div class="categories-grid">
-                <div class="category-card" onclick="filterByCategory('electronics'); showSection('shop')">
-                    <span class="category-icon">📱</span>
-                    <h4>Electronics</h4>
+                <div class="category-card" onclick="filterByCategory('makeup'); showSection('shop')">
+                    <span class="category-icon">💄</span>
+                    <h4>Makeup</h4>
+                </div>
+                <div class="category-card" onclick="filterByCategory('girls_stuff'); showSection('shop')">
+                    <span class="category-icon">🦑</span>
+                    <h4>Girls Stuff</h4>
+                </div>
+                <div class="category-card" onclick="filterByCategory('accessories'); showSection('shop')">
+                    <span class="category-icon">🎧</span>
+                    <h4>Accessories</h4>
                 </div>
                 <div class="category-card" onclick="filterByCategory('fashion'); showSection('shop')">
                     <span class="category-icon">👕</span>
@@ -48,10 +56,6 @@
                 <div class="category-card" onclick="filterByCategory('gaming'); showSection('shop')">
                     <span class="category-icon">🎮</span>
                     <h4>Gaming</h4>
-                </div>
-                <div class="category-card" onclick="filterByCategory('accessories'); showSection('shop')">
-                    <span class="category-icon">🎧</span>
-                    <h4>Accessories</h4>
                 </div>
             </div>
         </div>
@@ -66,10 +70,11 @@
                 <input type="text" id="searchInput" placeholder="Search products..." class="search-box">
                 <select id="categoryFilter" class="filter-select">
                     <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
+                    <option value="makeup">Makeup</option>
+                    <option value="girls_stuff">Girls Stuff</option>
+                    <option value="accessories">Accessories</option>
                     <option value="fashion">Fashion</option>
                     <option value="gaming">Gaming</option>
-                    <option value="accessories">Accessories</option>
                 </select>
                 <select id="priceFilter" class="filter-select">
                     <option value="">All Prices</option>
